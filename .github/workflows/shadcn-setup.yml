@@ -14,8 +14,18 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18 # Ensure the version matches your requirements
+          node-version: 18 # Adjust if necessary
 
       - name: Run shadcn command
         run: |
           npx shadcn@latest add "https://v0.dev/chat/b/b_1RRFo3CZ02Y?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..s7nD3ox58yFpHp7N.pO1MVPeoas2MyV6qQ7y2_VsSlSfvlFc-L68v2V9Y5p4m3NEgMititsXTH-M.tiLkRg2KAonKIjcgqVu9Uw"
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Add Shadcn files via GitHub Actions"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
