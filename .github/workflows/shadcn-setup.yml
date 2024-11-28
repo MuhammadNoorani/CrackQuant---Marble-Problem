@@ -1,10 +1,10 @@
-name: Add Shadcn
+name: Debug Shadcn Command
 
 on:
   workflow_dispatch: # Allows manual trigger of the workflow
 
 jobs:
-  run-npx-command:
+  debug-shadcn-command:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,6 +19,9 @@ jobs:
       - name: Run shadcn command
         run: |
           npx shadcn@latest add "https://v0.dev/chat/b/b_1RRFo3CZ02Y?token=eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..s7nD3ox58yFpHp7N.pO1MVPeoas2MyV6qQ7y2_VsSlSfvlFc-L68v2V9Y5p4m3NEgMititsXTH-M.tiLkRg2KAonKIjcgqVu9Uw"
+
+      - name: Debug Directory Content
+        run: ls -la
 
       - name: Commit and Push Changes
         run: |
