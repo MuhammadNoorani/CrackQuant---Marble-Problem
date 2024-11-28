@@ -64,14 +64,14 @@ export function MarbleJarSimulation() {
     const isSelected = selectedJar === jarNumber
 
     return (
-      <div className={`relative w-32 h-48 rounded-3xl overflow-hidden border-2 transition-all ${
+      <div className={`relative w-24 sm:w-32 h-36 sm:h-48 rounded-3xl overflow-hidden border-2 transition-all ${
         isSelected ? 'border-blue-500 shadow-lg scale-105' : 'border-gray-200'
       }`}>
         <div 
           className="absolute bottom-0 w-full bg-gray-100 transition-all"
           style={{ height: `${whiteHeight}%` }}
         >
-          <div className="absolute inset-0 flex items-center justify-center text-sm font-medium">
+          <div className="absolute inset-0 flex items-center justify-center text-xs sm:text-sm font-medium">
             {whites} white
           </div>
         </div>
@@ -79,7 +79,7 @@ export function MarbleJarSimulation() {
           className="absolute top-0 w-full bg-gray-700 transition-all"
           style={{ height: `${100 - whiteHeight}%` }}
         >
-          <div className="absolute inset-0 flex items-center justify-center text-sm font-medium text-white">
+          <div className="absolute inset-0 flex items-center justify-center text-xs sm:text-sm font-medium text-white">
             {blacks} black
           </div>
         </div>
@@ -88,14 +88,15 @@ export function MarbleJarSimulation() {
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Interactive Simulation</h2>
+    <div className="space-y-4 sm:space-y-6">
+      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+        <h2 className="text-xl sm:text-2xl font-bold">Interactive Simulation</h2>
         <div className="flex gap-2">
           <Button
             variant="outline"
             size="sm"
             onClick={resetSimulation}
+            className="flex-1 sm:flex-none"
           >
             <RefreshCcw className="w-4 h-4 mr-2" />
             Reset
@@ -104,7 +105,7 @@ export function MarbleJarSimulation() {
             size="sm"
             onClick={runSimulation}
             disabled={isSimulating}
-            className="bg-blue-500 hover:bg-blue-600 text-white"
+            className="flex-1 sm:flex-none bg-blue-500 hover:bg-blue-600 text-white"
           >
             <Shuffle className="w-4 h-4 mr-2" />
             Draw Marble
@@ -112,23 +113,23 @@ export function MarbleJarSimulation() {
         </div>
       </div>
 
-      <div className="flex justify-center gap-8 items-center">
+      <div className="flex justify-center gap-4 sm:gap-8 items-center">
         {renderJar(1, jar1Whites, jar1Blacks)}
         {renderJar(2, jar2Whites, jar2Blacks)}
       </div>
 
-      <div className="grid grid-cols-3 gap-4 text-center">
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <div className="text-2xl font-bold">{stats.totalTrials}</div>
-          <div className="text-sm text-gray-600">Total Trials</div>
+      <div className="grid grid-cols-3 gap-2 sm:gap-4 text-center">
+        <div className="p-2 sm:p-4 bg-gray-50 rounded-lg">
+          <div className="text-lg sm:text-2xl font-bold">{stats.totalTrials}</div>
+          <div className="text-xs sm:text-sm text-gray-600">Total Trials</div>
         </div>
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <div className="text-2xl font-bold">{stats.successfulPicks}</div>
-          <div className="text-sm text-gray-600">White Marbles</div>
+        <div className="p-2 sm:p-4 bg-gray-50 rounded-lg">
+          <div className="text-lg sm:text-2xl font-bold">{stats.successfulPicks}</div>
+          <div className="text-xs sm:text-sm text-gray-600">White Marbles</div>
         </div>
-        <div className="p-4 bg-gray-50 rounded-lg">
-          <div className="text-2xl font-bold">{stats.observedProbability.toFixed(1)}%</div>
-          <div className="text-sm text-gray-600">Success Rate</div>
+        <div className="p-2 sm:p-4 bg-gray-50 rounded-lg">
+          <div className="text-lg sm:text-2xl font-bold">{stats.observedProbability.toFixed(1)}%</div>
+          <div className="text-xs sm:text-sm text-gray-600">Success Rate</div>
         </div>
       </div>
 
@@ -136,7 +137,7 @@ export function MarbleJarSimulation() {
         <label className="text-sm font-medium">
           Distribution Strategy
         </label>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
           <Button
             variant="outline"
             onClick={() => {
@@ -146,6 +147,7 @@ export function MarbleJarSimulation() {
               setJar2Blacks(50)
               resetSimulation()
             }}
+            className="w-full"
           >
             Optimal Strategy
           </Button>
@@ -158,6 +160,7 @@ export function MarbleJarSimulation() {
               setJar2Blacks(25)
               resetSimulation()
             }}
+            className="w-full"
           >
             Even Distribution
           </Button>
@@ -166,4 +169,3 @@ export function MarbleJarSimulation() {
     </div>
   )
 }
-
